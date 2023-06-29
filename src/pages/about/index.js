@@ -7,8 +7,20 @@ import {
   meta,
   worktimeline,
   skills,
-  services,
+  courses,
 } from "../../content_option";
+
+const AboutComponent = () => {
+  const aboutLines = dataabout.aboutme.split("\n");
+
+  return (
+    <div>
+      {aboutLines.map((line, index) => (
+        <p key={index}>{line}</p>
+      ))}
+    </div>
+  );
+};
 
 export const About = () => {
   return (
@@ -31,7 +43,7 @@ export const About = () => {
           </Col>
           <Col lg="7" className="d-flex align-items-center">
             <div>
-              <p>{dataabout.aboutme}</p>
+              <AboutComponent />
             </div>
           </Col>
         </Row>
@@ -43,11 +55,20 @@ export const About = () => {
             <table className="table caption-top">
               <tbody>
                 {worktimeline.map((data, i) => {
+                  const { jobtitle, where, date, link } = data;
                   return (
                     <tr key={i}>
-                      <th scope="row">{data.jobtitle}</th>
-                      <td>{data.where}</td>
-                      <td>{data.date}</td>
+                      <th scope="row">{jobtitle}</th>
+                      <td>
+                        {where ? (
+                          <a href={link} target="_blank" rel="no-referrer">
+                            {where}
+                          </a>
+                        ) : (
+                          where
+                        )}
+                      </td>
+                      <td>{date}</td>
                     </tr>
                   );
                 })}
@@ -81,14 +102,23 @@ export const About = () => {
         </Row>
         <Row className="sec_sp">
           <Col lang="5">
-            <h3 className="color_sec py-4">services</h3>
+            <h3 className="color_sec py-4">Courses</h3>
           </Col>
           <Col lg="7">
-            {services.map((data, i) => {
+            {courses.map((data, i) => {
+              const { title, description, link } = data;
               return (
                 <div className="service_ py-4" key={i}>
-                  <h5 className="service__title">{data.title}</h5>
-                  <p className="service_desc">{data.description}</p>
+                  <h5 className="service__title">
+                    {title ? (
+                      <a href={link} target="_blank" rel="no-referrer">
+                        {title}
+                      </a>
+                    ) : (
+                      title
+                    )}
+                  </h5>
+                  <p className="service_desc">{description}</p>
                 </div>
               );
             })}

@@ -21,12 +21,13 @@ export const Portfolio = () => {
         </Row>
         <div className="mb-5 po_items_ho">
           {dataportfolio.map((data, i) => {
+            console.log(data.img.type);
             return (
               <div key={i} className="po_item">
-                <img src={data.img} alt="" />
+                <img src={data.img.type} alt="" />
                 <div className="content">
                   <p>{data.description}</p>
-                  <a href={data.link}>view project</a>
+                  {data.link && <a href={data.link}>view project</a>}
                 </div>
               </div>
             );
