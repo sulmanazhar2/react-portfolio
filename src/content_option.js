@@ -20,7 +20,7 @@ const introdata = {
   },
   description:
     "Experienced Full Stack Developer with a strong expertise in JavaScript development, delivering high-quality web solutions, collaborating closely with clients, and driving innovation through a comprehensive skill set",
-  your_img_url: "https://i.imgur.com/AYyMrWz.jpg",
+  your_img_url: "https://i.imgur.com/eEBg6A5.jpg",
 };
 
 const dataabout = {
