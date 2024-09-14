@@ -30,9 +30,15 @@ const dataabout = {
 
 const worktimeline = [
   {
+    jobtitle: "Senior Developer",
+    where: "GotPhoto.com | fotograf.de",
+    date: "September 2023 - Present",
+    link: "https://www.fotograf.de/",
+  },
+  {
     jobtitle: "Lead Developer",
     where: "Infaque",
-    date: "August 2020 - Present",
+    date: "August 2020 - September 2023",
     link: "https://infaque.com/",
   },
   {
@@ -171,7 +177,6 @@ const dataportfolio = [
 
 const contactConfig = {
   YOUR_EMAIL: "sulmanazhar10@gmail.com",
-  YOUR_FONE: "+923045896078",
   description:
     "Experienced Full Stack Developer with a strong expertise in JavaScript development, delivering high-quality web solutions, collaborating closely with clients, and driving innovation through a comprehensive skill set",
   YOUR_SERVICE_ID: "service_5dun9wg",
