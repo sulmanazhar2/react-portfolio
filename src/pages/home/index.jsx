@@ -26,7 +26,8 @@ export const Home = () => {
             <img
               src={introdata.your_img}
               alt={`Portrait of ${introdata.title}`}
-              className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover object-top border-4 border-[var(--color-border)] shadow-sm"
+              className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-4 border-[var(--color-border)] shadow-sm"
+              style={{ objectPosition: "center 20%" }}
               loading="eager"
             />
           </div>
