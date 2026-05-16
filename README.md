@@ -1,87 +1,71 @@
 # React Portfolio - Sulman Azhar
 
-Personal portfolio website built with React, showcasing projects, skills, and work experience.
-
-**Live:** Deployed via Firebase Hosting
+Personal portfolio website built with React and Vite, deployed on Firebase Hosting.
 
 ## Tech Stack
 
-- **Framework:** React 18 (Create React App)
-- **Styling:** React-Bootstrap, CSS
-- **Routing:** React Router v6
-- **Contact Form:** EmailJS
-- **Analytics:** Firebase Analytics
-- **Hosting:** Firebase Hosting
+- **React 18** with Vite 6
+- **React Router v7** for routing
+- **React-Bootstrap** for UI components
+- **Firebase Analytics** + **Firebase Hosting**
+- **@emailjs/browser** for the contact form
+- **pnpm** package manager
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+
 - pnpm
 
 ### Setup
 
-1. Clone the repository:
-
 ```bash
 git clone https://github.com/sulmanazhar2/react-portfolio.git
 cd react-portfolio
-```
-
-2. Install dependencies:
-
-```bash
 pnpm install
+cp .env.local.example .env.local   # then fill in your values
+pnpm dev
 ```
 
-3. Set up environment variables:
+The app runs at `http://localhost:3000`.
+
+### Environment Variables
+
+All env vars use the `VITE_` prefix and live in `.env.local` (gitignored). See `.env.local.example` for the full list of required variables.
+
+### Build
 
 ```bash
-cp .env.local.example .env.local
+pnpm build       # Outputs production build to build/
+pnpm preview     # Preview the production build locally
 ```
 
-Edit `.env.local` and fill in your Firebase configuration values. See the [Firebase Console](https://console.firebase.google.com/) for your project credentials.
-
-4. Start the development server:
+### Deploy
 
 ```bash
-pnpm start
-```
-
-The app will be available at `http://localhost:3000`.
-
-### Build for Production
-
-```bash
-pnpm build
-```
-
-### Deploy to Firebase
-
-```bash
-firebase deploy
+pnpm deploy      # Builds and deploys to Firebase Hosting
 ```
 
 ## Project Structure
 
 ```
 src/
-  app/              # App shell (App.js, routes, global styles)
-  assets/images/    # Project screenshots and logo
-  components/       # Reusable components (social icons, theme toggle)
-  firebase/         # Firebase initialization
-  header/           # Navigation header
-  hooks/            # Custom hooks (animated cursor, withRouter)
-  pages/            # Page components (home, about, contact, portfolio)
-  content_option.js # Central content configuration
-  index.js          # Entry point
+  main.jsx                          # Entry point
+  app/                              # Root app and routes
+  pages/                            # home, about, contact, portfolio, notfound
+  components/                       # ErrorBoundary, socialicons, themetoggle
+  header/                           # Navigation header
+  hooks/AnimatedCursor.jsx          # Animated cursor effect
+  firebase/firebaseConfig.js        # Firebase init + analytics helper
+  content_option.js                 # All portfolio content lives here
+public/                             # Static assets (favicon, manifest, robots, sitemap)
 ```
 
 ## Customization
 
-All portfolio content (bio, skills, projects, work timeline, contact info) is configured in `src/content_option.js`.
+All portfolio content (bio, skills, projects, work timeline, contact info) is in `src/content_option.js`. Edit that file to update the site -- no other code changes needed for content updates.
 
 ## Credits
 
-Based on the [react-portfolio](https://github.com/ubaimutl/react-portfolio) template by ubaimutl.
+Originally based on the [react-portfolio](https://github.com/ubaimutl/react-portfolio) template by ubaimutl. Significantly refactored and modernized.

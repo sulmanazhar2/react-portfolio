@@ -2,8 +2,6 @@ section {
   flex: 1 0 auto;
   position: relative;
   width: 100%;
-  -webkit-transition: all 0.5s ease-in;
-  -o-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
 }
 
@@ -31,7 +29,6 @@ section {
 }
 
 .intro_sec {
-  height: calc(100vh - 60px);
   min-height: 700px;
   height: 100vh;
   margin-top: -60px;
@@ -129,7 +126,6 @@ section {
 .ac_btn .one {
   background-color: #000;
   transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
-  z-index: -3;
   z-index: -4;
 }
 
@@ -141,7 +137,6 @@ section {
 
 .ac_btn .three {
   background-color: var(--secondary-color);
-  z-index: -2;
   transition: all 0.7s cubic-bezier(0.55, 0, 0.1, 1);
   z-index: -3;
 }

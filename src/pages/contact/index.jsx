@@ -1,25 +1,43 @@
 import React, { useState } from "react";
-import * as emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import "./style.css";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import { meta } from "../../content_option";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import { contactConfig } from "../../content_option";
 
-export const ContactUs = () => {
-  const [formData, setFormdata] = useState({
-    email: "",
-    name: "",
-    message: "",
-    loading: false,
-    show: false,
-    alertmessage: "",
-    variant: "",
-  });
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-  const handleSubmit = (e) => {
+const initialFormState = {
+  email: "",
+  name: "",
+  message: "",
+  loading: false,
+  show: false,
+  alertmessage: "",
+  variant: "",
+};
+
+export const ContactUs = () => {
+  const [formData, setFormdata] = useState(initialFormState);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormdata({ loading: true });
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setFormdata((prev) => ({
+        ...prev,
+        alertmessage:
+          "Contact form is not configured. Please email directly.",
+        variant: "danger",
+        show: true,
+      }));
+      return;
+    }
+
+    setFormdata((prev) => ({ ...prev, loading: true, show: false }));
 
     const templateParams = {
       from_name: formData.email,
@@ -28,44 +46,43 @@ export const ContactUs = () => {
       message: formData.message,
     };
 
-    emailjs
-      .send(
-        contactConfig.YOUR_SERVICE_ID,
-        contactConfig.YOUR_TEMPLATE_ID,
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         templateParams,
-        contactConfig.YOUR_USER_ID
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setFormdata({
-            loading: false,
-            alertmessage: "SUCCESS! ,Thankyou for your messege",
-            variant: "success",
-            show: true,
-          });
-        },
-        (error) => {
-          console.log(error.text);
-          setFormdata({
-            alertmessage: `Faild to send!,${error.text}`,
-            variant: "danger",
-            show: true,
-          });
-          document.getElementsByClassName("co_alert")[0].scrollIntoView();
-        }
+        EMAILJS_PUBLIC_KEY
       );
+      setFormdata((prev) => ({
+        ...prev,
+        loading: false,
+        email: "",
+        name: "",
+        message: "",
+        alertmessage: "Success! Thank you for your message.",
+        variant: "success",
+        show: true,
+      }));
+    } catch (error) {
+      setFormdata((prev) => ({
+        ...prev,
+        loading: false,
+        alertmessage: `Failed to send: ${error?.text || "Please try again."}`,
+        variant: "danger",
+        show: true,
+      }));
+      const alertEl = document.getElementsByClassName("co_alert")[0];
+      if (alertEl) alertEl.scrollIntoView();
+    }
   };
 
   const handleChange = (e) => {
-    setFormdata({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormdata((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
-    <HelmetProvider>
+    <>
       <Container>
         <Helmet>
           <meta charSet="utf-8" />
@@ -81,12 +98,13 @@ export const ContactUs = () => {
         <Row className="sec_sp">
           <Col lg="12">
             <Alert
-              //show={formData.show}
               variant={formData.variant}
               className={`rounded-0 co_alert ${
                 formData.show ? "d-block" : "d-none"
               }`}
-              onClose={() => setFormdata({ show: false })}
+              onClose={() =>
+                setFormdata((prev) => ({ ...prev, show: false }))
+              }
               dismissible
             >
               <p className="my-0">{formData.alertmessage}</p>
@@ -101,12 +119,10 @@ export const ContactUs = () => {
               </a>
               <br />
               <br />
-              {contactConfig.hasOwnProperty("YOUR_FONE") ? (
+              {contactConfig.YOUR_FONE && (
                 <p>
                   <strong>Phone:</strong> {contactConfig.YOUR_FONE}
                 </p>
-              ) : (
-                ""
               )}
             </address>
             <p>{contactConfig.description}</p>
@@ -115,30 +131,39 @@ export const ContactUs = () => {
             <form onSubmit={handleSubmit} className="contact__form w-100">
               <Row>
                 <Col lg="6" className="form-group">
+                  <label htmlFor="name" className="visually-hidden">
+                    Name
+                  </label>
                   <input
                     className="form-control"
                     id="name"
                     name="name"
                     placeholder="Name"
-                    value={formData.name || ""}
+                    value={formData.name}
                     type="text"
                     required
                     onChange={handleChange}
                   />
                 </Col>
                 <Col lg="6" className="form-group">
+                  <label htmlFor="email" className="visually-hidden">
+                    Email
+                  </label>
                   <input
                     className="form-control rounded-0"
                     id="email"
                     name="email"
                     placeholder="Email"
                     type="email"
-                    value={formData.email || ""}
+                    value={formData.email}
                     required
                     onChange={handleChange}
                   />
                 </Col>
               </Row>
+              <label htmlFor="message" className="visually-hidden">
+                Message
+              </label>
               <textarea
                 className="form-control rounded-0"
                 id="message"
@@ -152,7 +177,11 @@ export const ContactUs = () => {
               <br />
               <Row>
                 <Col lg="12" className="form-group">
-                  <button className="btn ac_btn" type="submit">
+                  <button
+                    className="btn ac_btn"
+                    type="submit"
+                    disabled={formData.loading}
+                  >
                     {formData.loading ? "Sending..." : "Send"}
                   </button>
                 </Col>
@@ -162,6 +191,6 @@ export const ContactUs = () => {
         </Row>
       </Container>
       <div className={formData.loading ? "loading-bar" : "d-none"}></div>
-    </HelmetProvider>
+    </>
   );
 };
