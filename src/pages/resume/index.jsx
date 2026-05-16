@@ -5,11 +5,8 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { meta, resumeFile } from "../../content_option";
 
-// Configure PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
+// Use CDN-hosted worker matching our pdfjs-dist version — reliable in all environments
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 export const Resume = () => {
   const [numPages, setNumPages] = useState(null);
@@ -32,10 +29,7 @@ export const Resume = () => {
     setNumPages(numPages);
   };
 
-  // Scale the PDF to fit the container, with a max width for readability
-  const pageWidth = containerWidth
-    ? Math.min(containerWidth - 2, 800)
-    : 800;
+  const pageWidth = containerWidth ? Math.min(containerWidth - 2, 800) : 800;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[var(--color-bg-subtle)] to-[var(--color-bg)]">
