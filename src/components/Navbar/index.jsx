@@ -4,7 +4,6 @@ import { logotext, resumeFile } from "../../content_option";
 
 const navItems = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
   { to: "/work", label: "Work" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },

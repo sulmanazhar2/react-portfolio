@@ -5,25 +5,22 @@ const logotext = "Sulman";
 const meta = {
   title: "Sulman Azhar Qureshi",
   description:
-    "Senior Software Engineer based in Berlin. Building scalable, event-driven systems at GotPhoto/fotograf.de. Specializing in TypeScript, Next.js, GraphQL, and AI-augmented engineering.",
+    "Senior Software Engineer based in Berlin. Building scalable distributed systems and AI-augmented developer tooling. Specializing in TypeScript, React, Next.js, GraphQL, and AWS.",
 };
 
 const introdata = {
   title: "Sulman Azhar Qureshi",
   tagline: "Senior Software Engineer",
-  animated: {
-    first: "Senior Software Engineer",
-    second: "Building systems at scale",
-    third: "AI-augmented engineering",
-  },
   description:
-    "Senior Software Engineer based in Berlin, building event-driven systems and AI-augmented developer tooling at GotPhoto/fotograf.de. I focus on shipping reliable, well-architected software across the frontend, backend, and cloud.",
+    "Senior Software Engineer based in Berlin, building distributed systems and AI-augmented developer tooling at GotPhoto/fotograf.de. I focus on shipping reliable, well-architected software across the frontend, backend, and cloud.",
+  shortBio:
+    "I've spent the past 6+ years building full-stack products — from founding engineer at a startup in Pakistan to senior engineer at a scale-up in Berlin. I'm currently focused on frontend modernization, microservices decomposition, and building AI-powered internal tooling that makes engineering teams faster.",
   your_img: profileImage,
 };
 
 const dataabout = {
   title: "About me",
-  aboutme: `I'm a Senior Software Engineer based in Berlin, currently building event-driven systems and developer tooling at GotPhoto/fotograf.de. My work spans the full stack — from Next.js + GraphQL frontends to AWS-based microservices handling millions of image assets.\n\nI started my career in Lahore, Pakistan, where I joined Infaque as its first engineer. Over three years I grew with the company, eventually leading the engineering team and architecting the platform that became its flagship product — a multi-vendor payment system powering charitable organizations across North America.\n\nIn 2023 I relocated to Berlin to join GotPhoto, contributing to the migration of a legacy CakePHP platform to a modern Next.js + GraphQL architecture, the decomposition of a monolithic core into microservices, and the buildout of internal AI tooling that has measurably improved our team's velocity.\n\nI care deeply about pragmatic engineering, clear writing, and making the right tradeoffs. I'm increasingly interested in how LLM-based tooling can change the way we build software — and I get to explore that question full-time.`,
+  aboutme: `I'm a Senior Software Engineer based in Berlin, currently working on distributed systems, frontend modernization, and AI-augmented developer tooling at GotPhoto/fotograf.de.\n\nMy work spans the full stack — from React and Next.js frontends with GraphQL to event-driven microservices on AWS processing millions of records. I contribute to architecture decisions, participate in on-call rotations, and actively use test-driven development and code reviews to maintain quality across a fast-moving codebase.\n\nBefore Berlin, I spent three years at Infaque in Lahore, Pakistan — joining as the first engineer, eventually leading the engineering team, and architecting the multi-vendor payment platform that became the company's flagship product. I built the core infrastructure on GCP with serverless architectures, designed enterprise auth flows (IdP, SAML, Auth0), and managed the team from hiring through delivery.\n\nI care about pragmatic engineering, clear communication, and making the right tradeoffs. I'm increasingly interested in how LLM-based tooling and AI-augmented workflows can change the way we build and ship software.`,
 };
 
 const worktimeline = [
@@ -34,11 +31,13 @@ const worktimeline = [
     date: "Oct 2023 — Present",
     link: "https://www.fotograf.de/",
     highlights: [
-      "Migrating a legacy CakePHP interface to a Next.js + GraphQL architecture — improving type safety, performance, and developer velocity.",
-      "Contributing to the decomposition of a monolithic core into microservices: API design, service extraction, cross-service integration.",
-      "Engineering features within an event-driven AWS ecosystem (SNS/SQS/Lambda) handling millions of image assets.",
-      "Building and maintaining Electron applications and Lightroom plugins for professional photography workflows.",
-      "Spearheading internal AI tooling: LLM agents, Claude, and MCP-integrated coding assistants — reducing vendor reliance and accelerating delivery.",
+      "Contributing to a large-scale frontend modernization from a legacy PHP monolith to a modern React/Next.js + GraphQL architecture, with strong focus on type safety, performance, and incremental rollout.",
+      "Participating in the decomposition of a monolithic core into microservices — API design, service extraction strategies, and cross-service integration using event-driven patterns.",
+      "Engineering features within an asynchronous, event-driven AWS ecosystem (SNS, SQS, Lambda) handling millions of records, with focus on reliability, idempotency, and observability.",
+      "Employing test-driven development (TDD) and actively participating in code reviews to ensure software quality and maintain high standards across the team.",
+      "Building and maintaining specialized client-side software including Electron applications and Lightroom plugins for professional photography workflows.",
+      "Spearheading internal AI tooling initiatives — building LLM-based agents and MCP-integrated coding assistants that reduce external vendor reliance and accelerate full-stack development.",
+      "Contributing to CI/CD pipeline improvements and participating in on-call rotations to ensure system reliability and rapid incident resolution.",
     ],
   },
   {
@@ -49,10 +48,12 @@ const worktimeline = [
     link: "https://infaque.com/",
     highlights: [
       "Promoted from Full Stack Developer; led engineering for a 20+ person startup as its first technical hire.",
-      "Architected a multi-vendor payment gateway integrating Stripe, PayPal, and regional North American providers.",
-      "Designed the platform's high-availability backbone on GCP, QLDB, and Firebase Pub/Sub.",
-      "Implemented enterprise authentication (IdP + SAML) via Auth0 and Firebase.",
-      "Owned hiring, mentoring, and technical roadmap; established CI/CD pipelines via GitHub Actions.",
+      "Architected a multi-vendor payment gateway system integrating Stripe, PayPal, and regional North American providers for charitable organizations.",
+      "Designed the platform's high-availability backbone on GCP with QLDB for immutable financial records and Firebase Pub/Sub for async event flows.",
+      "Implemented enterprise-grade authentication and identity solutions using IdP and SAML via Auth0 and Firebase.",
+      "Directed the end-to-end recruitment process, assessment, and onboarding of the engineering team while mentoring junior developers.",
+      "Established and managed CI/CD pipelines using GitHub Actions, ensuring consistent and automated deployment cycles.",
+      "Managed technical roadmaps and task distribution via Jira, translating complex client requirements into scalable technical specifications.",
     ],
   },
   {
@@ -61,6 +62,10 @@ const worktimeline = [
     location: "Lahore, Pakistan",
     date: "Nov 2020 — Aug 2021",
     link: "https://infaque.com/",
+    highlights: [
+      "Joined as the first employee, architecting the initial codebase and scaling technical infrastructure to support the company's growth.",
+      "Managed and trained a small team while working on new applications with evolving requirements across multiple client projects.",
+    ],
   },
   {
     jobtitle: "Freelance Web Developer",
@@ -96,7 +101,7 @@ const skills = {
     "LLM-based agents",
     "Claude",
     "MCP-integrated tooling",
-    "Internal AI tooling",
+    "Rapid prototyping",
   ],
 };
 
@@ -123,47 +128,47 @@ const courses = [
   },
 ];
 
-// Selected work highlights (text-based, not screenshot grid)
+// Selected work highlights — pattern-focused, confidentiality-safe
 const highlights = [
   {
-    title: "Legacy CakePHP → Next.js + GraphQL migration",
+    title: "Frontend modernization at scale",
     company: "GotPhoto / fotograf.de",
     period: "2023 — Present",
     summary:
-      "Helping migrate a long-lived CakePHP interface to a modern Next.js + GraphQL stack while keeping production stable. Strong focus on type safety, performance, and incremental rollout.",
+      "Contributing to a large-scale frontend migration from a legacy PHP monolith to a modern React/Next.js + GraphQL architecture. Focus on type safety, incremental rollout, and maintaining production stability throughout a multi-year transition.",
     stack: ["Next.js", "TypeScript", "GraphQL", "React"],
   },
   {
-    title: "Event-driven image processing at scale",
+    title: "Distributed systems & high-volume data pipelines",
     company: "GotPhoto / fotograf.de",
     period: "2023 — Present",
     summary:
-      "Engineering features in an asynchronous AWS pipeline (SNS/SQS/Lambda) that processes millions of image assets — optimizing storage, retrieval, and orchestration.",
-    stack: ["AWS", "SNS/SQS", "Lambda", "Node.js"],
+      "Engineering features within an asynchronous, event-driven microservices architecture (AWS SNS/SQS/Lambda) processing millions of records. Focus on reliability, idempotency, observability, and efficient orchestration across service boundaries.",
+    stack: ["AWS", "SNS/SQS", "Lambda", "Node.js", "Microservices"],
   },
   {
-    title: "Internal AI tooling initiative",
+    title: "AI-augmented developer tooling",
     company: "GotPhoto / fotograf.de",
     period: "2024 — Present",
     summary:
-      "Spearheading internal LLM-based tooling — including MCP-integrated coding assistants — to reduce external vendor reliance and accelerate full-stack development across the engineering org.",
-    stack: ["LLM agents", "Claude", "MCP", "Internal tools"],
+      "Spearheading internal developer tooling built on LLM-based agents and MCP-integrated coding assistants. Reducing external vendor reliance and measurably accelerating full-stack development, debugging, and rapid prototyping across the engineering organization.",
+    stack: ["LLM agents", "Claude", "MCP", "Internal tooling"],
   },
   {
     title: "Multi-vendor payment infrastructure",
     company: "Infaque",
     period: "2021 — 2023",
     summary:
-      "Architected a payment gateway system integrating Stripe, PayPal, and regional North American providers — supporting diverse charitable organizations across multiple jurisdictions.",
+      "Architected a payment gateway system integrating Stripe, PayPal, and regional North American providers — supporting diverse charitable organizations across multiple jurisdictions with complex compliance requirements.",
     stack: ["Stripe", "PayPal", "Node.js", "GCP"],
   },
   {
-    title: "Flagship SaaS platform launch",
+    title: "Flagship SaaS platform — founding engineer to team lead",
     company: "Infaque",
-    period: "2021 — 2023",
+    period: "2020 — 2023",
     summary:
-      "Designed and engineered the company's flagship product end-to-end. Built on GCP with QLDB for immutable financial records and Firebase Pub/Sub for async event flows. Led the engineering team from first hire to 20+ people.",
-    stack: ["GCP", "QLDB", "Firebase", "React", "Serverless"],
+      "Designed and engineered the company's flagship product end-to-end as the first hire. Built on GCP with QLDB for immutable financial records and Firebase Pub/Sub for async event flows. Grew the team from 1 to 20+ engineers, owning hiring, mentoring, and technical roadmap.",
+    stack: ["GCP", "QLDB", "Firebase", "React", "Serverless", "Auth0"],
   },
 ];
 
