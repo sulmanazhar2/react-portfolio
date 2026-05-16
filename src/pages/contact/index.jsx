@@ -1,196 +1,186 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-import "./style.css";
 import { Helmet } from "react-helmet-async";
-import { meta } from "../../content_option";
-import { Container, Row, Col, Alert } from "react-bootstrap";
-import { contactConfig } from "../../content_option";
+import { meta, contactConfig } from "../../content_option";
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-const initialFormState = {
-  email: "",
+const initialState = {
   name: "",
+  email: "",
   message: "",
   loading: false,
-  show: false,
-  alertmessage: "",
-  variant: "",
+  alert: null,
 };
 
 export const ContactUs = () => {
-  const [formData, setFormdata] = useState(initialFormState);
+  const [form, setForm] = useState(initialState);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      setFormdata((prev) => ({
+      setForm((prev) => ({
         ...prev,
-        alertmessage:
-          "Contact form is not configured. Please email directly.",
-        variant: "danger",
-        show: true,
+        alert: {
+          type: "error",
+          text: "Contact form is not configured. Please reach out via email instead.",
+        },
       }));
       return;
     }
 
-    setFormdata((prev) => ({ ...prev, loading: true, show: false }));
-
-    const templateParams = {
-      from_name: formData.email,
-      user_name: formData.name,
-      to_name: contactConfig.YOUR_EMAIL,
-      message: formData.message,
-    };
+    setForm((prev) => ({ ...prev, loading: true, alert: null }));
 
     try {
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        templateParams,
+        {
+          from_name: form.email,
+          user_name: form.name,
+          to_name: contactConfig.YOUR_EMAIL,
+          message: form.message,
+        },
         EMAILJS_PUBLIC_KEY
       );
-      setFormdata((prev) => ({
+      setForm({
+        ...initialState,
+        alert: { type: "success", text: "Message sent. Thank you!" },
+      });
+    } catch (err) {
+      setForm((prev) => ({
         ...prev,
         loading: false,
-        email: "",
-        name: "",
-        message: "",
-        alertmessage: "Success! Thank you for your message.",
-        variant: "success",
-        show: true,
+        alert: {
+          type: "error",
+          text: `Failed to send: ${err?.text || "Please try again."}`,
+        },
       }));
-    } catch (error) {
-      setFormdata((prev) => ({
-        ...prev,
-        loading: false,
-        alertmessage: `Failed to send: ${error?.text || "Please try again."}`,
-        variant: "danger",
-        show: true,
-      }));
-      const alertEl = document.getElementsByClassName("co_alert")[0];
-      if (alertEl) alertEl.scrollIntoView();
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormdata((prev) => ({ ...prev, [name]: value }));
-  };
-
   return (
-    <>
-      <Container>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>{meta.title} | Contact</title>
-          <meta name="description" content={meta.description} />
-        </Helmet>
-        <Row className="mb-5 mt-3 pt-md-3">
-          <Col lg="8">
-            <h1 className="display-4 mb-4">Contact Me</h1>
-            <hr className="t_border my-4 ml-0 text-left" />
-          </Col>
-        </Row>
-        <Row className="sec_sp">
-          <Col lg="12">
-            <Alert
-              variant={formData.variant}
-              className={`rounded-0 co_alert ${
-                formData.show ? "d-block" : "d-none"
-              }`}
-              onClose={() =>
-                setFormdata((prev) => ({ ...prev, show: false }))
-              }
-              dismissible
+    <div className="max-w-4xl mx-auto px-6 py-16">
+      <Helmet>
+        <title>Contact | {meta.title}</title>
+        <meta name="description" content={meta.description} />
+      </Helmet>
+
+      <h1 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+        Get in touch
+      </h1>
+      <p className="text-[var(--color-text-secondary)] leading-relaxed mb-12 max-w-2xl">
+        {contactConfig.description}
+      </p>
+
+      <div className="grid md:grid-cols-3 gap-12">
+        {/* Sidebar */}
+        <div className="md:col-span-1 space-y-4 text-sm">
+          <div>
+            <p className="font-semibold mb-1">Email</p>
+            <a
+              href={`mailto:${contactConfig.YOUR_EMAIL}`}
+              className="text-[var(--color-accent)] no-underline hover:underline"
             >
-              <p className="my-0">{formData.alertmessage}</p>
-            </Alert>
-          </Col>
-          <Col lg="5" className="mb-5">
-            <h3 className="color_sec py-4">Get in touch</h3>
-            <address>
-              <strong>Email:</strong>{" "}
-              <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
-                {contactConfig.YOUR_EMAIL}
-              </a>
-              {contactConfig.location && (
-                <>
-                  <br />
-                  <br />
-                  <strong>Location:</strong> {contactConfig.location}
-                </>
-              )}
-            </address>
-            <p>{contactConfig.description}</p>
-          </Col>
-          <Col lg="7" className="d-flex align-items-center">
-            <form onSubmit={handleSubmit} className="contact__form w-100">
-              <Row>
-                <Col lg="6" className="form-group">
-                  <label htmlFor="name" className="visually-hidden">
-                    Name
-                  </label>
-                  <input
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    placeholder="Name"
-                    value={formData.name}
-                    type="text"
-                    required
-                    onChange={handleChange}
-                  />
-                </Col>
-                <Col lg="6" className="form-group">
-                  <label htmlFor="email" className="visually-hidden">
-                    Email
-                  </label>
-                  <input
-                    className="form-control rounded-0"
-                    id="email"
-                    name="email"
-                    placeholder="Email"
-                    type="email"
-                    value={formData.email}
-                    required
-                    onChange={handleChange}
-                  />
-                </Col>
-              </Row>
-              <label htmlFor="message" className="visually-hidden">
+              {contactConfig.YOUR_EMAIL}
+            </a>
+          </div>
+          {contactConfig.location && (
+            <div>
+              <p className="font-semibold mb-1">Location</p>
+              <p className="text-[var(--color-text-secondary)]">
+                {contactConfig.location}
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Form */}
+        <div className="md:col-span-2">
+          {form.alert && (
+            <div
+              className={`mb-6 px-4 py-3 rounded-md text-sm ${
+                form.alert.type === "success"
+                  ? "bg-green-50 text-green-800 border border-green-200"
+                  : "bg-red-50 text-red-800 border border-red-200"
+              }`}
+              role="alert"
+            >
+              {form.alert.text}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium mb-1.5"
+                >
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  value={form.name}
+                  onChange={handleChange}
+                  className="w-full px-3.5 py-2.5 text-sm border border-[var(--color-border)] rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-1.5"
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={handleChange}
+                  className="w-full px-3.5 py-2.5 text-sm border border-[var(--color-border)] rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium mb-1.5"
+              >
                 Message
               </label>
               <textarea
-                className="form-control rounded-0"
                 id="message"
                 name="message"
-                placeholder="Message"
                 rows="5"
-                value={formData.message}
-                onChange={handleChange}
                 required
-              ></textarea>
-              <br />
-              <Row>
-                <Col lg="12" className="form-group">
-                  <button
-                    className="btn ac_btn"
-                    type="submit"
-                    disabled={formData.loading}
-                  >
-                    {formData.loading ? "Sending..." : "Send"}
-                  </button>
-                </Col>
-              </Row>
-            </form>
-          </Col>
-        </Row>
-      </Container>
-      <div className={formData.loading ? "loading-bar" : "d-none"}></div>
-    </>
+                value={form.message}
+                onChange={handleChange}
+                className="w-full px-3.5 py-2.5 text-sm border border-[var(--color-border)] rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition resize-y"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={form.loading}
+              className="px-6 py-2.5 text-sm font-medium bg-[var(--color-accent)] text-white rounded-md hover:bg-[var(--color-accent-light)] disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+            >
+              {form.loading ? "Sending..." : "Send message"}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };

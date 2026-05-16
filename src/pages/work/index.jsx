@@ -1,65 +1,72 @@
 import React from "react";
-import "./style.css";
 import { Helmet } from "react-helmet-async";
-import { Container, Row, Col } from "react-bootstrap";
 import { highlights, meta } from "../../content_option";
 
 export const Work = () => {
   return (
-    <Container className="About-header">
+    <div className="max-w-4xl mx-auto px-6 py-16">
       <Helmet>
-        <meta charSet="utf-8" />
         <title>Work | {meta.title}</title>
         <meta
           name="description"
-          content="Selected work and project highlights — engineering, architecture, and AI tooling."
+          content="Selected work and project highlights from Sulman Azhar Qureshi."
         />
       </Helmet>
 
-      <Row className="mb-5 mt-3 pt-md-3">
-        <Col lg="8">
-          <h1 className="display-4 mb-4">Selected work</h1>
-          <hr className="t_border my-4 ml-0 text-left" />
-          <p className="work-intro">
-            A few representative projects and initiatives — focused on
-            engineering impact rather than visual screenshots. Most of the
-            production work I do is on internal systems that I can't fully share,
-            so these are summaries rather than live links.
-          </p>
-        </Col>
-      </Row>
+      <h1 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+        Selected work
+      </h1>
+      <p className="text-[var(--color-text-secondary)] leading-relaxed mb-12 max-w-2xl">
+        A few representative projects and initiatives. Most production work
+        involves internal systems, so these are summaries focused on
+        engineering impact rather than live links.
+      </p>
 
-      <div className="highlights-list">
+      <div className="space-y-6">
         {highlights.map((item, i) => (
-          <article key={i} className="highlight-card">
-            <header className="highlight-header">
-              <h2 className="highlight-title">{item.title}</h2>
-              <div className="highlight-meta">
-                <span className="highlight-company">{item.company}</span>
-                <span className="highlight-period">{item.period}</span>
-              </div>
-            </header>
-            <p className="highlight-summary">{item.summary}</p>
-            {item.stack && item.stack.length > 0 && (
-              <ul className="highlight-stack">
+          <article
+            key={i}
+            className="border border-[var(--color-border)] rounded-lg p-6 hover:border-[var(--color-accent)]/40 transition-colors"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <h2 className="text-lg font-heading font-semibold">
+                {item.title}
+              </h2>
+              <span className="text-xs text-[var(--color-text-secondary)] shrink-0">
+                {item.period}
+              </span>
+            </div>
+            <p className="text-sm text-[var(--color-accent)] font-medium mb-2">
+              {item.company}
+            </p>
+            <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-4">
+              {item.summary}
+            </p>
+            {item.stack && (
+              <div className="flex flex-wrap gap-1.5">
                 {item.stack.map((tech) => (
-                  <li key={tech}>{tech}</li>
+                  <span
+                    key={tech}
+                    className="px-2 py-0.5 text-xs border border-[var(--color-border)] rounded text-[var(--color-text-secondary)]"
+                  >
+                    {tech}
+                  </span>
                 ))}
-              </ul>
+              </div>
             )}
             {item.link && (
               <a
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="highlight-link"
+                className="inline-block mt-3 text-sm text-[var(--color-accent)] no-underline hover:underline"
               >
-                View project →
+                View project &rarr;
               </a>
             )}
           </article>
         ))}
       </div>
-    </Container>
+    </div>
   );
 };

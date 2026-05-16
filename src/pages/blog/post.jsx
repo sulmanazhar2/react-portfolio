@@ -1,7 +1,5 @@
 import React from "react";
-import "./style.css";
 import { Helmet } from "react-helmet-async";
-import { Container, Row, Col } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { MDXProvider } from "@mdx-js/react";
 import { getPostBySlug } from "../../blog/posts";
@@ -35,59 +33,56 @@ export const BlogPost = () => {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
 
-  if (!post) {
-    return <NotFound />;
-  }
+  if (!post) return <NotFound />;
 
   const { Component } = post;
 
   return (
-    <Container className="About-header post-page">
+    <div className="max-w-3xl mx-auto px-6 py-16">
       <Helmet>
-        <meta charSet="utf-8" />
-        <title>
-          {post.title} | {meta.title}
-        </title>
+        <title>{post.title} | {meta.title}</title>
         <meta name="description" content={post.summary || meta.description} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.summary} />
         <meta property="og:type" content="article" />
       </Helmet>
 
-      <Row className="mb-4 mt-3 pt-md-3">
-        <Col lg="9">
-          <Link to="/blog" className="post-back">
-            ← All posts
-          </Link>
-          <h1 className="post-title">{post.title}</h1>
-          <div className="post-meta">
-            <time>{formatDate(post.date)}</time>
-            <span>·</span>
-            <span>{post.readingTime}</span>
-            {post.tags && post.tags.length > 0 && (
-              <>
-                <span>·</span>
-                <ul className="post-meta-tags">
-                  {post.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </div>
-          <hr className="t_border my-4 ml-0 text-left" />
-        </Col>
-      </Row>
+      <Link
+        to="/blog"
+        className="text-sm text-[var(--color-text-secondary)] no-underline hover:text-[var(--color-text)] transition-colors mb-8 inline-block"
+      >
+        &larr; All posts
+      </Link>
 
-      <Row className="mb-5">
-        <Col lg="9">
-          <article className="post-content">
-            <MDXProvider components={mdxComponents}>
-              <Component />
-            </MDXProvider>
-          </article>
-        </Col>
-      </Row>
-    </Container>
+      <header className="mb-10">
+        <h1 className="text-3xl md:text-4xl font-heading font-bold leading-tight mb-4">
+          {post.title}
+        </h1>
+        <div className="flex items-center flex-wrap gap-3 text-sm text-[var(--color-text-secondary)]">
+          <time>{formatDate(post.date)}</time>
+          <span>&middot;</span>
+          <span>{post.readingTime}</span>
+          {post.tags && post.tags.length > 0 && (
+            <>
+              <span>&middot;</span>
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="bg-[var(--color-bg-muted)] px-2 py-0.5 rounded text-xs"
+                >
+                  {tag}
+                </span>
+              ))}
+            </>
+          )}
+        </div>
+      </header>
+
+      <article className="prose-article">
+        <MDXProvider components={mdxComponents}>
+          <Component />
+        </MDXProvider>
+      </article>
+    </div>
   );
 };

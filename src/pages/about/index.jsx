@@ -1,7 +1,5 @@
 import React from "react";
-import "./style.css";
 import { Helmet } from "react-helmet-async";
-import { Container, Row, Col } from "react-bootstrap";
 import {
   dataabout,
   meta,
@@ -11,166 +9,166 @@ import {
   recommendations,
 } from "../../content_option";
 
-const BioParagraphs = () => {
-  const lines = dataabout.aboutme.split("\n").filter((l) => l.trim());
-  return (
-    <>
-      {lines.map((line, i) => (
-        <p key={i}>{line}</p>
-      ))}
-    </>
-  );
-};
-
 export const About = () => {
+  const bioLines = dataabout.aboutme.split("\n").filter((l) => l.trim());
+
   return (
-    <Container className="About-header">
+    <div className="max-w-4xl mx-auto px-6 py-16">
       <Helmet>
-        <meta charSet="utf-8" />
         <title>About | {meta.title}</title>
         <meta name="description" content={meta.description} />
       </Helmet>
 
-      <Row className="mb-5 mt-3 pt-md-3">
-        <Col lg="8">
-          <h1 className="display-4 mb-4">About me</h1>
-          <hr className="t_border my-4 ml-0 text-left" />
-        </Col>
-      </Row>
+      <h1 className="text-3xl md:text-4xl font-heading font-bold mb-10">
+        About me
+      </h1>
 
-      <Row className="sec_sp">
-        <Col lg="5">
-          <h3 className="color_sec py-4">{dataabout.title}</h3>
-        </Col>
-        <Col lg="7" className="d-flex align-items-center">
-          <div className="about-bio">
-            <BioParagraphs />
-          </div>
-        </Col>
-      </Row>
+      {/* Bio */}
+      <section className="mb-16">
+        <div className="prose-custom">
+          {bioLines.map((line, i) => (
+            <p
+              key={i}
+              className="text-[var(--color-text-secondary)] leading-relaxed mb-4"
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+      </section>
 
-      <Row className="sec_sp">
-        <Col lg="5">
-          <h3 className="color_sec py-4">Experience</h3>
-        </Col>
-        <Col lg="7">
-          <ol className="timeline">
-            {worktimeline.map((role, i) => (
-              <li key={i} className="timeline-item">
-                <div className="timeline-header">
-                  <h4 className="timeline-title">
-                    {role.jobtitle}
-                    {role.where && (
-                      <span className="timeline-where">
-                        {" — "}
-                        {role.link ? (
-                          <a
-                            href={role.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {role.where}
-                          </a>
-                        ) : (
-                          role.where
-                        )}
-                      </span>
+      {/* Experience */}
+      <section className="mb-16">
+        <h2 className="text-2xl font-heading font-bold mb-8">Experience</h2>
+        <div className="space-y-8">
+          {worktimeline.map((role, i) => (
+            <div
+              key={i}
+              className="relative pl-6 border-l-2 border-[var(--color-border)]"
+            >
+              <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-[var(--color-accent)]" />
+              <h3 className="text-lg font-semibold font-heading leading-snug">
+                {role.jobtitle}
+                {role.where && (
+                  <span className="text-[var(--color-text-secondary)] font-normal">
+                    {" at "}
+                    {role.link ? (
+                      <a
+                        href={role.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline decoration-[var(--color-accent)]/30 underline-offset-2 hover:decoration-[var(--color-accent)]"
+                      >
+                        {role.where}
+                      </a>
+                    ) : (
+                      role.where
                     )}
-                  </h4>
-                  <div className="timeline-meta">
-                    <span>{role.date}</span>
-                    {role.location && <span>{role.location}</span>}
-                  </div>
-                </div>
-                {role.highlights && role.highlights.length > 0 && (
-                  <ul className="timeline-highlights">
-                    {role.highlights.map((h, j) => (
-                      <li key={j}>{h}</li>
-                    ))}
-                  </ul>
+                  </span>
                 )}
-              </li>
-            ))}
-          </ol>
-        </Col>
-      </Row>
-
-      <Row className="sec_sp">
-        <Col lg="5">
-          <h3 className="color_sec py-4">Skills</h3>
-        </Col>
-        <Col lg="7">
-          <div className="skills-grid">
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="skill-category">
-                <h4 className="skill-category-title">{category}</h4>
-                <ul className="skill-tags">
-                  {items.map((item) => (
-                    <li key={item} className="skill-tag">
-                      {item}
+              </h3>
+              <div className="flex flex-wrap gap-3 text-sm text-[var(--color-text-secondary)] mt-1 mb-2">
+                <span>{role.date}</span>
+                {role.location && (
+                  <>
+                    <span>&middot;</span>
+                    <span>{role.location}</span>
+                  </>
+                )}
+              </div>
+              {role.highlights && (
+                <ul className="mt-3 space-y-1.5">
+                  {role.highlights.map((h, j) => (
+                    <li
+                      key={j}
+                      className="text-sm text-[var(--color-text-secondary)] leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[var(--color-border)]"
+                    >
+                      {h}
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
-          </div>
-        </Col>
-      </Row>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
 
+      {/* Skills */}
+      <section className="mb-16">
+        <h2 className="text-2xl font-heading font-bold mb-8">Skills</h2>
+        <div className="space-y-6">
+          {Object.entries(skills).map(([category, items]) => (
+            <div key={category}>
+              <h3 className="text-xs font-medium uppercase tracking-wider text-[var(--color-text-secondary)] mb-3">
+                {category}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {items.map((item) => (
+                  <span
+                    key={item}
+                    className="px-3 py-1.5 text-sm border border-[var(--color-border)] rounded-md text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Recommendations */}
       {recommendations && recommendations.length > 0 && (
-        <Row className="sec_sp">
-          <Col lg="5">
-            <h3 className="color_sec py-4">Recommendations</h3>
-          </Col>
-          <Col lg="7">
+        <section className="mb-16">
+          <h2 className="text-2xl font-heading font-bold mb-8">
+            Recommendations
+          </h2>
+          <div className="space-y-6">
             {recommendations.map((rec, i) => (
-              <figure key={i} className="recommendation">
+              <figure
+                key={i}
+                className="border-l-3 border-[var(--color-accent)] pl-6 py-2"
+              >
                 <blockquote>
-                  <p>{rec.quote}</p>
+                  <p className="text-[var(--color-text-secondary)] leading-relaxed italic">
+                    &ldquo;{rec.quote}&rdquo;
+                  </p>
                 </blockquote>
-                <figcaption>
-                  <strong>{rec.name}</strong>
-                  <span>{rec.title}</span>
-                  {rec.relationship && (
-                    <span className="recommendation-meta">
-                      {rec.relationship}
-                    </span>
-                  )}
+                <figcaption className="mt-3">
+                  <p className="text-sm font-semibold">{rec.name}</p>
+                  <p className="text-xs text-[var(--color-text-secondary)]">
+                    {rec.title}
+                  </p>
                 </figcaption>
               </figure>
             ))}
-          </Col>
-        </Row>
+          </div>
+        </section>
       )}
 
-      <Row className="sec_sp">
-        <Col lg="5">
-          <h3 className="color_sec py-4">Courses</h3>
-        </Col>
-        <Col lg="7">
-          {courses.map((data, i) => {
-            const { title, description, link } = data;
-            return (
-              <div className="service_ py-3" key={i}>
-                <h5 className="service__title">
-                  {title && link ? (
-                    <a
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {title}
-                    </a>
-                  ) : (
-                    title
-                  )}
-                </h5>
-                <p className="service_desc">{description}</p>
-              </div>
-            );
-          })}
-        </Col>
-      </Row>
-    </Container>
+      {/* Courses */}
+      <section>
+        <h2 className="text-2xl font-heading font-bold mb-8">
+          Certifications
+        </h2>
+        <div className="grid gap-3">
+          {courses.map((c, i) => (
+            <div key={i} className="flex items-baseline gap-3">
+              <a
+                href={c.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium underline decoration-[var(--color-accent)]/30 underline-offset-2 hover:decoration-[var(--color-accent)] transition-colors"
+              >
+                {c.title}
+              </a>
+              <span className="text-xs text-[var(--color-text-secondary)]">
+                {c.description}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 };

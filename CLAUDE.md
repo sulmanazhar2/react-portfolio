@@ -9,7 +9,7 @@ Personal portfolio + blog for Sulman Azhar Qureshi (Senior Software Engineer, Be
 - **React Router v7** for routing
 - **MDX (@mdx-js/rollup)** for blog content
 - **rehype-pretty-code + shiki** for code syntax highlighting in blog posts
-- **React-Bootstrap** + CSS for styling
+- **Tailwind CSS v4** for styling (no React-Bootstrap)
 - **Firebase Analytics** (SDK v12) — safe init, no-ops if config missing
 - **Firebase Hosting** for deployment
 - **@emailjs/browser** for the contact form
@@ -56,9 +56,8 @@ src/
   content/blog/*.mdx                # Blog post source files (frontmatter + markdown)
   firebase/firebaseConfig.js        # Safe Firebase init + trackEvent() helper
   pages/                            # home, about, work, blog (+ post.jsx), resume, contact, notfound
-  components/                       # ErrorBoundary, socialicons, themetoggle
-  header/                           # Navigation header (Home, About, Work, Blog, Resume, Contact)
-  hooks/AnimatedCursor.jsx          # Custom animated cursor
+  components/                       # ErrorBoundary, Navbar, Footer
+  hooks/                            # (empty, AnimatedCursor was removed)
   assets/images/                    # profile.jpg, logo.svg
 ```
 

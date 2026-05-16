@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import AppRoutes from "./routes";
-import Headermain from "../header";
-import AnimatedCursor from "../hooks/AnimatedCursor";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { trackEvent } from "../firebase/firebaseConfig";
-
-import "./App.css";
 
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
@@ -23,19 +20,14 @@ export default function App() {
 
   return (
     <Router>
-      <div className="cursor__dot">
-        <AnimatedCursor
-          innerSize={15}
-          outerSize={15}
-          color="255, 255, 255"
-          outerAlpha={0.4}
-          innerScale={0.7}
-          outerScale={5}
-        />
-      </div>
       <ScrollToTop>
-        <Headermain />
-        <AppRoutes />
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-1">
+            <AppRoutes />
+          </main>
+          <Footer />
+        </div>
       </ScrollToTop>
     </Router>
   );
