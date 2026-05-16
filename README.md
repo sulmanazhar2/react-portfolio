@@ -1,38 +1,87 @@
-### Description
+# React Portfolio - Sulman Azhar
 
-A simple portfolio template for developer/designers built with React. 
+Personal portfolio website built with React, showcasing projects, skills, and work experience.
 
-### [live preview](https://ubaimutl.github.io/react-portfolio/)
+**Live:** Deployed via Firebase Hosting
 
-[![react portfoiio](src/assets/images/react%20portfolio%20gif.gif)](https://ubaimutl.github.io/react-portfolio/)
+## Tech Stack
 
-### Features
+- **Framework:** React 18 (Create React App)
+- **Styling:** React-Bootstrap, CSS
+- **Routing:** React Router v6
+- **Contact Form:** EmailJS
+- **Analytics:** Firebase Analytics
+- **Hosting:** Firebase Hosting
 
-- Fully Responsive
-- Multi-Page Layout
-- Contact Form With EmailJs
-- React-Bootstrap
-- Edit Content From One Place
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm
 
 ### Setup
 
-Get the code
+1. Clone the repository:
 
-<pre>git clone https://github.com/ubaimutl/react-portfolio.git</pre>
- 
-Install required dependencies
+```bash
+git clone https://github.com/sulmanazhar2/react-portfolio.git
+cd react-portfolio
+```
 
-<pre>yarn install</pre>
+2. Install dependencies:
 
+```bash
+pnpm install
+```
 
-Start the server
+3. Set up environment variables:
 
-<pre>yarn start</pre>
+```bash
+cp .env.local.example .env.local
+```
 
-### More
+Edit `.env.local` and fill in your Firebase configuration values. See the [Firebase Console](https://console.firebase.google.com/) for your project credentials.
 
-Modify pages content in  `src/content_option.js`.
+4. Start the development server:
 
-### Thanks
+```bash
+pnpm start
+```
 
-If you like this portfolio template don't forget give it a ⭐ 
+The app will be available at `http://localhost:3000`.
+
+### Build for Production
+
+```bash
+pnpm build
+```
+
+### Deploy to Firebase
+
+```bash
+firebase deploy
+```
+
+## Project Structure
+
+```
+src/
+  app/              # App shell (App.js, routes, global styles)
+  assets/images/    # Project screenshots and logo
+  components/       # Reusable components (social icons, theme toggle)
+  firebase/         # Firebase initialization
+  header/           # Navigation header
+  hooks/            # Custom hooks (animated cursor, withRouter)
+  pages/            # Page components (home, about, contact, portfolio)
+  content_option.js # Central content configuration
+  index.js          # Entry point
+```
+
+## Customization
+
+All portfolio content (bio, skills, projects, work timeline, contact info) is configured in `src/content_option.js`.
+
+## Credits
+
+Based on the [react-portfolio](https://github.com/ubaimutl/react-portfolio) template by ubaimutl.
