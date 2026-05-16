@@ -5,6 +5,15 @@ import { Link } from "react-router-dom";
 import { logotext, socialprofils } from "../content_option";
 import Themetoggle from "../components/themetoggle";
 
+const navItems = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/work", label: "Work" },
+  { to: "/blog", label: "Blog" },
+  { to: "/resume", label: "Resume" },
+  { to: "/contact", label: "Contact" },
+];
+
 const Headermain = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -51,47 +60,30 @@ const Headermain = () => {
             <div className="menu__wrapper">
               <div className="menu__container p-3">
                 <ul className="the_menu">
-                  <li className="menu_item">
-                    <Link onClick={handleToggle} to="/" className="my-3">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="menu_item">
-                    <Link
-                      onClick={handleToggle}
-                      to="/portfolio"
-                      className="my-3"
-                    >
-                      Portfolio
-                    </Link>
-                  </li>
-                  <li className="menu_item">
-                    <Link onClick={handleToggle} to="/about" className="my-3">
-                      About
-                    </Link>
-                  </li>
-                  <li className="menu_item">
-                    <Link
-                      onClick={handleToggle}
-                      to="/contact"
-                      className="my-3"
-                    >
-                      Contact
-                    </Link>
-                  </li>
+                  {navItems.map((item) => (
+                    <li key={item.to} className="menu_item">
+                      <Link
+                        onClick={handleToggle}
+                        to={item.to}
+                        className="my-3"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
           </div>
           <div className="menu_footer d-flex flex-column flex-md-row justify-content-between align-items-md-center position-absolute w-100 p-3">
-            <div className="d-flex">
+            <div className="d-flex gap-3">
               {socialprofils.github && (
                 <a
                   href={socialprofils.github}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Github
+                  GitHub
                 </a>
               )}
               {socialprofils.linkedin && (
@@ -103,13 +95,13 @@ const Headermain = () => {
                   LinkedIn
                 </a>
               )}
-              {socialprofils.twitter && (
+              {socialprofils.stackoverflow && (
                 <a
-                  href={socialprofils.twitter}
+                  href={socialprofils.stackoverflow}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Twitter
+                  Stack Overflow
                 </a>
               )}
             </div>

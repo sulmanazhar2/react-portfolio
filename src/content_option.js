@@ -1,93 +1,106 @@
-import InfaqueImage from "./assets/images/infaque.png";
-import EgilityImage from "./assets/images/egility.png";
-import RiskwellImage from "./assets/images/zenpliance.png";
-import SMCImage from "./assets/images/swm.png";
-import FinancialAccumentImage from "./assets/images/financial-accumen.png";
+import profileImage from "./assets/images/profile.jpg";
 
 const logotext = "Sulman";
+
 const meta = {
-  title: "Sulman Azhar",
+  title: "Sulman Azhar Qureshi",
   description:
-    "Experienced Full Stack Developer with a strong expertise in JavaScript development, delivering high-quality web solutions, collaborating closely with clients, and driving innovation through a comprehensive skill set.",
+    "Senior Software Engineer based in Berlin. Building scalable, event-driven systems at GotPhoto/fotograf.de. Specializing in TypeScript, Next.js, GraphQL, and AI-augmented engineering.",
 };
 
 const introdata = {
-  title: "Sulman Azhar",
+  title: "Sulman Azhar Qureshi",
+  tagline: "Senior Software Engineer",
   animated: {
-    first: "JavaScript Expert",
-    second: "Leader in Web Development",
-    third: "Client-Focused Problem Solver",
+    first: "Senior Software Engineer",
+    second: "Building systems at scale",
+    third: "AI-augmented engineering",
   },
   description:
-    "Experienced Full Stack Developer with a strong expertise in JavaScript development, delivering high-quality web solutions, collaborating closely with clients, and driving innovation through a comprehensive skill set",
-  your_img_url: "https://i.imgur.com/eEBg6A5.jpg",
+    "Senior Software Engineer based in Berlin, building event-driven systems and AI-augmented developer tooling at GotPhoto/fotograf.de. I focus on shipping reliable, well-architected software across the frontend, backend, and cloud.",
+  your_img: profileImage,
 };
 
 const dataabout = {
-  title: "About Myself",
-  aboutme: `Welcome to my portfolio website! I'm Sulman, a passionate full stack developer with a strong background in technology and a drive to create innovative solutions. From a young age, I found myself captivated by the world of technology, tinkering with computers and diving into the intricacies of mobile phone repair. This early passion laid the foundation for my journey into the ever-evolving realm of software development.\n\nI pursued my enthusiasm for technology by obtaining a diploma in Associate Engineering in Electronics, where I gained valuable insights into semiconductor operations and their physical applications. Eager to expand my expertise, I went on to earn a bachelor's degree in Software Engineering from the University of Lahore, Pakistan.\n\nDuring my academic years, I embraced web development and honed my skills in HTML, CSS, JavaScript, and Bootstrap. This allowed me to embark on creating full-stack applications, leveraging my understanding of databases and web fundamentals. It was during this time that I developed my first full-stack application—a student management system website—where I delved into designing robust architectures and seamless user experiences.\n\nDriven by a thirst for knowledge and an eagerness to explore diverse opportunities, I ventured into freelance work, tackling Android applications, databases, and web solutions. This allowed me to expand my skill set and showcase my versatility as a quick learner. Additionally, my active involvement in online communities, particularly Reddit, enabled me to connect with like-minded individuals and stay up-to-date with the latest industry trends.\n\nMy career took an exciting turn when I joined Infaque, a startup on the cusp of growth and innovation. As a key member of the team, I embraced the challenge of becoming a lead developer and spearheaded the creation of groundbreaking solutions. From developing Small World Connect, a transformative application benefiting a Toronto-based charity, to building Egility Intelligence, a recruitment tool for a Canadian company, I thrived on the opportunity to make a positive impact through technology.\n\nWith a relentless drive for excellence, I have honed my skills in JavaScript, React, Node.js, and full-stack development. I am well-versed in working with various databases, including NoSQL systems, and have experience with cloud platforms such as Google Cloud Platform (GCP) and Amazon Web Services (AWS). My problem-solving mindset and dedication to delivering high-quality results have allowed me to thrive in a fast-paced and dynamic environment.\n\nBeyond my technical pursuits, I am a firm believer in the power of collaboration and effective communication. I value building strong relationships with clients and teammates, fostering a positive work culture that encourages innovation, creativity, and continuous learning.\n\nThank you for visiting my portfolio. I invite you to explore my projects and experiences, and I look forward to connecting with you to discuss how I can contribute to your next endeavor. Together, let's embrace the limitless possibilities of technology and create something truly remarkable.`,
+  title: "About me",
+  aboutme: `I'm a Senior Software Engineer based in Berlin, currently building event-driven systems and developer tooling at GotPhoto/fotograf.de. My work spans the full stack — from Next.js + GraphQL frontends to AWS-based microservices handling millions of image assets.\n\nI started my career in Lahore, Pakistan, where I joined Infaque as its first engineer. Over three years I grew with the company, eventually leading the engineering team and architecting the platform that became its flagship product — a multi-vendor payment system powering charitable organizations across North America.\n\nIn 2023 I relocated to Berlin to join GotPhoto, contributing to the migration of a legacy CakePHP platform to a modern Next.js + GraphQL architecture, the decomposition of a monolithic core into microservices, and the buildout of internal AI tooling that has measurably improved our team's velocity.\n\nI care deeply about pragmatic engineering, clear writing, and making the right tradeoffs. I'm increasingly interested in how LLM-based tooling can change the way we build software — and I get to explore that question full-time.`,
 };
 
 const worktimeline = [
   {
-    jobtitle: "Senior Developer",
-    where: "GotPhoto.com | fotograf.de",
-    date: "September 2023 - Present",
+    jobtitle: "Senior Software Engineer",
+    where: "GotPhoto / fotograf.de",
+    location: "Berlin, Germany",
+    date: "Oct 2023 — Present",
     link: "https://www.fotograf.de/",
+    highlights: [
+      "Migrating a legacy CakePHP interface to a Next.js + GraphQL architecture — improving type safety, performance, and developer velocity.",
+      "Contributing to the decomposition of a monolithic core into microservices: API design, service extraction, cross-service integration.",
+      "Engineering features within an event-driven AWS ecosystem (SNS/SQS/Lambda) handling millions of image assets.",
+      "Building and maintaining Electron applications and Lightroom plugins for professional photography workflows.",
+      "Spearheading internal AI tooling: LLM agents, Claude, and MCP-integrated coding assistants — reducing vendor reliance and accelerating delivery.",
+    ],
   },
   {
     jobtitle: "Lead Developer",
     where: "Infaque",
-    date: "August 2021 - September 2023",
+    location: "Lahore, Pakistan",
+    date: "Aug 2021 — Sep 2023",
     link: "https://infaque.com/",
+    highlights: [
+      "Promoted from Full Stack Developer; led engineering for a 20+ person startup as its first technical hire.",
+      "Architected a multi-vendor payment gateway integrating Stripe, PayPal, and regional North American providers.",
+      "Designed the platform's high-availability backbone on GCP, QLDB, and Firebase Pub/Sub.",
+      "Implemented enterprise authentication (IdP + SAML) via Auth0 and Firebase.",
+      "Owned hiring, mentoring, and technical roadmap; established CI/CD pipelines via GitHub Actions.",
+    ],
   },
   {
     jobtitle: "Full Stack Developer",
     where: "Infaque",
-    date: "October 2020 - August 2021",
+    location: "Lahore, Pakistan",
+    date: "Nov 2020 — Aug 2021",
     link: "https://infaque.com/",
   },
   {
-    jobtitle: "Full Stack Developer",
-    where: "Freelance",
-    date: "December 2019 - October 2020",
-  },
-  {
-    jobtitle: "Web Developer",
-    where: "AlthinkDev Internship",
-    date: "September 2017 - October 2017",
+    jobtitle: "Freelance Web Developer",
+    where: "Upwork",
+    location: "Lahore, Pakistan",
+    date: "Sep 2019 — Oct 2020",
+    highlights: [
+      "Delivered full-stack JavaScript solutions for international clients, maintaining a 100% Job Success Score.",
+      "Specialized in React + Node.js integrations across e-commerce, dashboards, and API work.",
+    ],
   },
 ];
 
-const skills = [
-  { name: "HTML & CSS", value: 95 },
-  { name: "JavaScript", value: 85 },
-  { name: "ReactJS", value: 80 },
-  { name: "Stripe", value: 80 },
-  { name: "Firebase", value: 80 },
-  { name: "Node.js", value: 75 },
-  { name: "NoSQL", value: 75 },
-  { name: "Redux", value: 75 },
-  { name: "Styled Components", value: 75 },
-  { name: "Google PubSubs", value: 75 },
-  { name: "Google Cloud Platform (GCP) basics", value: 75 },
-  { name: "Amazon Web Services (AWS) basics", value: 75 },
-  { name: "MySQL & PHP", value: 60 },
-  { name: "Laravel", value: 40 },
-  { name: "QuickBooks API", value: 30 },
-];
+const skills = {
+  Languages: ["TypeScript", "JavaScript (ES6+)", "PHP"],
+  Frontend: ["React", "Next.js", "GraphQL", "Redux", "HTML5 / CSS3"],
+  "Backend & Cloud": [
+    "Node.js",
+    "AWS (SNS, SQS, Lambda)",
+    "Google Cloud Platform",
+    "Microservices",
+    "Firebase",
+    "QLDB",
+  ],
+  "Tools & Practices": [
+    "Docker",
+    "Git",
+    "CI/CD (GitHub Actions)",
+    "Jira",
+    "TDD",
+  ],
+  "AI-Augmented Engineering": [
+    "LLM-based agents",
+    "Claude",
+    "MCP-integrated tooling",
+    "Internal AI tooling",
+  ],
+};
 
 const courses = [
-  {
-    title: "HTML, CSS & Javascript",
-    link: "https://coursera.org/verify/BUXPWJUY5NUE",
-    description: "Coursera (Nov 2018)",
-  },
-  {
-    title: "Front-End Web UI Frameworks and Tools",
-    link: "https://coursera.org/verify/8A9TJFP4DPF3",
-    description: "Coursera (Nov 2018)",
-  },
   {
     title: "Front-End JavaScript Frameworks: AngularJS",
     link: "https://coursera.org/verify/S9TVBBTN3WTB",
@@ -98,65 +111,105 @@ const courses = [
     link: "https://coursera.org/verify/XD4YJU6MWF8Z",
     description: "Coursera (Nov 2018)",
   },
+  {
+    title: "Front-End Web UI Frameworks and Tools",
+    link: "https://coursera.org/verify/8A9TJFP4DPF3",
+    description: "Coursera (Nov 2018)",
+  },
+  {
+    title: "HTML, CSS & Javascript",
+    link: "https://coursera.org/verify/BUXPWJUY5NUE",
+    description: "Coursera (Nov 2018)",
+  },
 ];
 
-const dataportfolio = [
+// Selected work highlights (text-based, not screenshot grid)
+const highlights = [
   {
-    img: InfaqueImage,
-    title: "Infaque",
-    description:
-      "Infaque's flagship product. A SaaS solution for charities, enabling them to collect funds and disburse to different campaigns under different causes with a seamless experience.",
-    link: "https://infaque.com",
+    title: "Legacy CakePHP → Next.js + GraphQL migration",
+    company: "GotPhoto / fotograf.de",
+    period: "2023 — Present",
+    summary:
+      "Helping migrate a long-lived CakePHP interface to a modern Next.js + GraphQL stack while keeping production stable. Strong focus on type safety, performance, and incremental rollout.",
+    stack: ["Next.js", "TypeScript", "GraphQL", "React"],
   },
   {
-    img: EgilityImage,
-    title: "Egility Intelligence",
-    description:
-      "A recruiting tool for a Canadian company that uses Humantic and Receptiviti to assess candidates.",
-    link: "https://egilityintelligence.app/",
+    title: "Event-driven image processing at scale",
+    company: "GotPhoto / fotograf.de",
+    period: "2023 — Present",
+    summary:
+      "Engineering features in an asynchronous AWS pipeline (SNS/SQS/Lambda) that processes millions of image assets — optimizing storage, retrieval, and orchestration.",
+    stack: ["AWS", "SNS/SQS", "Lambda", "Node.js"],
   },
   {
-    img: FinancialAccumentImage,
-    title: "Financial Acumen",
-    description:
-      "A SaaS solution for companies in Canada. A simplified tool for different companies to check their QuickBooks records in an easy way.",
+    title: "Internal AI tooling initiative",
+    company: "GotPhoto / fotograf.de",
+    period: "2024 — Present",
+    summary:
+      "Spearheading internal LLM-based tooling — including MCP-integrated coding assistants — to reduce external vendor reliance and accelerate full-stack development across the engineering org.",
+    stack: ["LLM agents", "Claude", "MCP", "Internal tools"],
   },
   {
-    img: SMCImage,
-    title: "Small World Connect",
-    description:
-      "Small World Connect is a project for Small World Music, a non-profit in Canada.",
+    title: "Multi-vendor payment infrastructure",
+    company: "Infaque",
+    period: "2021 — 2023",
+    summary:
+      "Architected a payment gateway system integrating Stripe, PayPal, and regional North American providers — supporting diverse charitable organizations across multiple jurisdictions.",
+    stack: ["Stripe", "PayPal", "Node.js", "GCP"],
   },
   {
-    img: RiskwellImage,
-    title: "Riskwell",
-    description:
-      "Riskwell is an LMS for brokers, built for Zensurance, a well-known company in Canada. (In development)",
+    title: "Flagship SaaS platform launch",
+    company: "Infaque",
+    period: "2021 — 2023",
+    summary:
+      "Designed and engineered the company's flagship product end-to-end. Built on GCP with QLDB for immutable financial records and Firebase Pub/Sub for async event flows. Led the engineering team from first hire to 20+ people.",
+    stack: ["GCP", "QLDB", "Firebase", "React", "Serverless"],
+  },
+];
+
+const recommendations = [
+  {
+    quote:
+      "Sulman has proven himself as an exceptional talent from the onset. Starting as a new grad developer, he swiftly mastered various platforms including React, Firebase, and Serverless programming, showcasing not just technical prowess but a profound understanding of technical architecture. Beyond his technical expertise, Sulman's leadership qualities shone when he successfully managed a team and oversaw the entire office operations.",
+    name: "Fahad Qureshi",
+    title: "CTO | AI Governance and ROI | Non-Profits Tech",
+    relationship: "Was Sulman's mentor",
+  },
+  {
+    quote:
+      "Sulman and I collaborated for three years, during which his mastery of software engineering and leadership as a team lead shone brightly. What truly sets Sulman apart is his humility despite his vast knowledge, he remains approachable and eager for open communication. His inclusive approach fosters a harmonious team environment.",
+    name: "Rida Noor",
+    title: "Project Management | Customer Success",
+    relationship: "Worked with Sulman on the same team",
   },
 ];
 
 const contactConfig = {
   YOUR_EMAIL: "sulmanazhar10@gmail.com",
+  location: "Berlin, Germany",
   description:
-    "Experienced Full Stack Developer with a strong expertise in JavaScript development, delivering high-quality web solutions, collaborating closely with clients, and driving innovation through a comprehensive skill set",
+    "Open to interesting conversations — engineering roles, side projects, AI/tooling topics, or just hello. The fastest way to reach me is email or LinkedIn.",
 };
 
 const socialprofils = {
   github: "https://github.com/sulmanazhar2",
+  linkedin: "https://www.linkedin.com/in/sulman-azhar",
   stackoverflow: "https://stackoverflow.com/users/13556091/sulman-azhar",
-  linkedin: "https://www.linkedin.com/in/sulman-azhar-qureshi-96ab51118",
-  twitter: "https://twitter.com/sulman_azhar2",
 };
+
+const resumeFile = "/Sulman_Qureshi_Resume.pdf";
 
 export {
   meta,
   dataabout,
-  dataportfolio,
+  highlights,
   worktimeline,
   skills,
   courses,
   introdata,
   contactConfig,
   socialprofils,
+  recommendations,
+  resumeFile,
   logotext,
 };

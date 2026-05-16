@@ -117,12 +117,12 @@ export const ContactUs = () => {
               <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
                 {contactConfig.YOUR_EMAIL}
               </a>
-              <br />
-              <br />
-              {contactConfig.YOUR_FONE && (
-                <p>
-                  <strong>Phone:</strong> {contactConfig.YOUR_FONE}
-                </p>
+              {contactConfig.location && (
+                <>
+                  <br />
+                  <br />
+                  <strong>Location:</strong> {contactConfig.location}
+                </>
               )}
             </address>
             <p>{contactConfig.description}</p>

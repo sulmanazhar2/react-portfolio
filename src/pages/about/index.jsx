@@ -8,17 +8,17 @@ import {
   worktimeline,
   skills,
   courses,
+  recommendations,
 } from "../../content_option";
 
-const AboutComponent = () => {
-  const aboutLines = dataabout.aboutme.split("\n");
-
+const BioParagraphs = () => {
+  const lines = dataabout.aboutme.split("\n").filter((l) => l.trim());
   return (
-    <div>
-      {aboutLines.map((line, index) => (
-        <p key={index}>{line}</p>
+    <>
+      {lines.map((line, i) => (
+        <p key={i}>{line}</p>
       ))}
-    </div>
+    </>
   );
 };
 
@@ -30,84 +30,119 @@ export const About = () => {
         <title>About | {meta.title}</title>
         <meta name="description" content={meta.description} />
       </Helmet>
+
       <Row className="mb-5 mt-3 pt-md-3">
         <Col lg="8">
           <h1 className="display-4 mb-4">About me</h1>
           <hr className="t_border my-4 ml-0 text-left" />
         </Col>
       </Row>
+
       <Row className="sec_sp">
         <Col lg="5">
           <h3 className="color_sec py-4">{dataabout.title}</h3>
         </Col>
         <Col lg="7" className="d-flex align-items-center">
-          <div>
-            <AboutComponent />
+          <div className="about-bio">
+            <BioParagraphs />
           </div>
         </Col>
       </Row>
+
       <Row className="sec_sp">
         <Col lg="5">
-          <h3 className="color_sec py-4">Work Timeline</h3>
+          <h3 className="color_sec py-4">Experience</h3>
         </Col>
         <Col lg="7">
-          <table className="table caption-top">
-            <tbody>
-              {worktimeline.map((data, i) => {
-                const { jobtitle, where, date, link } = data;
-                return (
-                  <tr key={i}>
-                    <th scope="row">{jobtitle}</th>
-                    <td>
-                      {where && link ? (
-                        <a
-                          href={link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {where}
-                        </a>
-                      ) : (
-                        where
-                      )}
-                    </td>
-                    <td>{date}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <ol className="timeline">
+            {worktimeline.map((role, i) => (
+              <li key={i} className="timeline-item">
+                <div className="timeline-header">
+                  <h4 className="timeline-title">
+                    {role.jobtitle}
+                    {role.where && (
+                      <span className="timeline-where">
+                        {" — "}
+                        {role.link ? (
+                          <a
+                            href={role.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {role.where}
+                          </a>
+                        ) : (
+                          role.where
+                        )}
+                      </span>
+                    )}
+                  </h4>
+                  <div className="timeline-meta">
+                    <span>{role.date}</span>
+                    {role.location && <span>{role.location}</span>}
+                  </div>
+                </div>
+                {role.highlights && role.highlights.length > 0 && (
+                  <ul className="timeline-highlights">
+                    {role.highlights.map((h, j) => (
+                      <li key={j}>{h}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ol>
         </Col>
       </Row>
+
       <Row className="sec_sp">
         <Col lg="5">
           <h3 className="color_sec py-4">Skills</h3>
         </Col>
         <Col lg="7">
-          {skills.map((data, i) => {
-            return (
-              <div key={i}>
-                <h3 className="progress-title">{data.name}</h3>
-                <div
-                  className="progress"
-                  role="progressbar"
-                  aria-label={`${data.name} skill level`}
-                  aria-valuenow={data.value}
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                >
-                  <div
-                    className="progress-bar"
-                    style={{ width: `${data.value}%` }}
-                  >
-                    <div className="progress-value">{data.value}%</div>
-                  </div>
-                </div>
+          <div className="skills-grid">
+            {Object.entries(skills).map(([category, items]) => (
+              <div key={category} className="skill-category">
+                <h4 className="skill-category-title">{category}</h4>
+                <ul className="skill-tags">
+                  {items.map((item) => (
+                    <li key={item} className="skill-tag">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </Col>
       </Row>
+
+      {recommendations && recommendations.length > 0 && (
+        <Row className="sec_sp">
+          <Col lg="5">
+            <h3 className="color_sec py-4">Recommendations</h3>
+          </Col>
+          <Col lg="7">
+            {recommendations.map((rec, i) => (
+              <figure key={i} className="recommendation">
+                <blockquote>
+                  <p>{rec.quote}</p>
+                </blockquote>
+                <figcaption>
+                  <strong>{rec.name}</strong>
+                  <span>{rec.title}</span>
+                  {rec.relationship && (
+                    <span className="recommendation-meta">
+                      {rec.relationship}
+                    </span>
+                  )}
+                </figcaption>
+              </figure>
+            ))}
+          </Col>
+        </Row>
+      )}
+
       <Row className="sec_sp">
         <Col lg="5">
           <h3 className="color_sec py-4">Courses</h3>
@@ -116,7 +151,7 @@ export const About = () => {
           {courses.map((data, i) => {
             const { title, description, link } = data;
             return (
-              <div className="service_ py-4" key={i}>
+              <div className="service_ py-3" key={i}>
                 <h5 className="service__title">
                   {title && link ? (
                     <a

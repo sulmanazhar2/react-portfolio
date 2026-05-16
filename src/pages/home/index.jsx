@@ -17,18 +17,18 @@ export const Home = () => {
         <div className="image-container order-1 order-lg-2 h-100">
           <div
             className="h_bg-image"
-            style={{ backgroundImage: `url(${introdata.your_img_url})` }}
+            style={{ backgroundImage: `url(${introdata.your_img})` }}
             role="img"
-            aria-label={`Portrait of ${meta.title}`}
+            aria-label={`Portrait of ${introdata.title}`}
           ></div>
           <img
-            src={introdata.your_img_url}
-            alt={`Portrait of ${meta.title}`}
+            src={introdata.your_img}
+            alt={`Portrait of ${introdata.title}`}
             loading="eager"
           />
         </div>
         <div className="text order-2 order-lg-1 h-100 d-lg-flex justify-content-center">
-          <div className="align-self-center ">
+          <div className="align-self-center">
             <div className="intro mx-auto">
               <h2 className="mb-1x">{introdata.title}</h2>
               <h1 className="fluidz-48 mb-1x">
@@ -47,9 +47,9 @@ export const Home = () => {
               </h1>
               <p className="mb-1x">{introdata.description}</p>
               <div className="intro_btn-action pb-5">
-                <Link to="/portfolio" className="text_2">
-                  <div id="button_p" className="ac_btn btn ">
-                    My Portfolio
+                <Link to="/work" className="text_2">
+                  <div id="button_p" className="ac_btn btn">
+                    Selected work
                     <div className="ring one"></div>
                     <div className="ring two"></div>
                     <div className="ring three"></div>
@@ -57,7 +57,7 @@ export const Home = () => {
                 </Link>
                 <Link to="/contact">
                   <div id="button_h" className="ac_btn btn">
-                    Contact Me
+                    Get in touch
                     <div className="ring one"></div>
                     <div className="ring two"></div>
                     <div className="ring three"></div>

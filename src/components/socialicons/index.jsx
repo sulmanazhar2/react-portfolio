@@ -1,11 +1,6 @@
 import React from "react";
 import "./style.css";
-import {
-  FaGithub,
-  FaTwitter,
-  FaStackOverflow,
-  FaLinkedin,
-} from "react-icons/fa";
+import { FaGithub, FaStackOverflow, FaLinkedin } from "react-icons/fa";
 import { socialprofils } from "../../content_option";
 
 const SocialLink = ({ href, label, children }) => (
@@ -25,19 +20,9 @@ export const Socialicons = () => {
   return (
     <div className="stick_follow_icon">
       <ul>
-        {socialprofils.twitter && (
-          <SocialLink href={socialprofils.twitter} label="Twitter">
-            <FaTwitter />
-          </SocialLink>
-        )}
         {socialprofils.github && (
           <SocialLink href={socialprofils.github} label="GitHub">
             <FaGithub />
-          </SocialLink>
-        )}
-        {socialprofils.stackoverflow && (
-          <SocialLink href={socialprofils.stackoverflow} label="Stack Overflow">
-            <FaStackOverflow />
           </SocialLink>
         )}
         {socialprofils.linkedin && (
@@ -45,8 +30,13 @@ export const Socialicons = () => {
             <FaLinkedin />
           </SocialLink>
         )}
+        {socialprofils.stackoverflow && (
+          <SocialLink href={socialprofils.stackoverflow} label="Stack Overflow">
+            <FaStackOverflow />
+          </SocialLink>
+        )}
       </ul>
-      <p>Follow Me</p>
+      <p>Follow</p>
     </div>
   );
 };
