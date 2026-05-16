@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { logotext, resumeFile } from "../../content_option";
+import { logotext } from "../../content_option";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -41,14 +41,16 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <a
-            href={resumeFile}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-2 px-4 py-2 text-sm font-medium bg-[var(--color-accent)] text-white rounded-md no-underline hover:bg-[var(--color-accent-light)] transition-colors"
+          <Link
+            to="/resume"
+            className={`ml-2 px-4 py-2 text-sm font-medium rounded-md no-underline transition-colors ${
+              pathname === "/resume"
+                ? "bg-[var(--color-accent-light)] text-white"
+                : "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-light)]"
+            }`}
           >
             Resume
-          </a>
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -108,15 +110,13 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <a
-            href={resumeFile}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/resume"
             onClick={close}
             className="block px-3 py-2 text-sm font-medium text-[var(--color-accent)] no-underline hover:bg-blue-50 rounded-md"
           >
             Resume &rarr;
-          </a>
+          </Link>
         </div>
       )}
     </header>
