@@ -5,7 +5,6 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { meta, resumeFile } from "../../content_option";
 
-// Use CDN-hosted worker matching our pdfjs-dist version — reliable in all environments
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 export const Resume = () => {
@@ -32,7 +31,7 @@ export const Resume = () => {
   const pageWidth = containerWidth ? Math.min(containerWidth - 2, 800) : 800;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[var(--color-bg-subtle)] to-[var(--color-bg)]">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50/60 to-slate-100">
       <Helmet>
         <title>Resume | {meta.title}</title>
         <meta
@@ -41,37 +40,9 @@ export const Resume = () => {
         />
       </Helmet>
 
-      <div className="max-w-4xl mx-auto px-6 pt-12 pb-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <h1 className="text-3xl md:text-4xl font-heading font-bold">
-            Resume
-          </h1>
-          <a
-            href={resumeFile}
-            download="Sulman_Qureshi_Resume.pdf"
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[var(--color-accent)] text-white rounded-md no-underline hover:bg-[var(--color-accent-light)] transition-colors"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-            Download PDF
-          </a>
-        </div>
-      </div>
-
       <div
         ref={containerRef}
-        className="max-w-4xl mx-auto px-6 pb-16 flex flex-col items-center"
+        className="max-w-4xl mx-auto px-6 py-12 flex flex-col items-center"
       >
         <Document
           file={resumeFile}
@@ -103,7 +74,7 @@ export const Resume = () => {
             Array.from(new Array(numPages), (_, index) => (
               <div
                 key={`page_${index + 1}`}
-                className="mb-6 shadow-lg rounded-lg overflow-hidden bg-white"
+                className="mb-8 shadow-xl rounded-lg overflow-hidden bg-white ring-1 ring-black/5"
               >
                 <Page
                   pageNumber={index + 1}
@@ -114,6 +85,29 @@ export const Resume = () => {
               </div>
             ))}
         </Document>
+
+        {numPages && (
+          <a
+            href={resumeFile}
+            download="Sulman_Qureshi_Resume.pdf"
+            className="inline-flex items-center gap-2 mt-2 mb-4 px-5 py-2.5 text-sm font-medium bg-[var(--color-accent)] text-white rounded-md no-underline hover:bg-[var(--color-accent-light)] transition-colors shadow-md"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            Download PDF
+          </a>
+        )}
       </div>
     </div>
   );
